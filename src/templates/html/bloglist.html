@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{{ template "header" . }}
+
+<link rel="stylesheet" href="templates/css/blogslist.css">
+
+{{ template "middle" . }}
+
+<div class="search-form">
+    <input type="text" class="search-input" placeholder="搜索博客">
+    <select class="filter-select">
+        <option value="">All</option>
+        <option value="Programming Languages">Programming Languages</option>
+        <option value="Operating System">Operating System</option>
+        <option value="Database">Database</option>
+        <option value="News">News</option>
+        <option value="Network Security">Network Security</option>
+        <option value="NMiscellaneous Discussions">Miscellaneous Discussions</option>
+    </select>
+    <button>搜索</button>
+</div>
+<ul class="blog-list">
+    {{range .articles}}
+    <li class="blog-item">
+        <h2 class="blog-title"><a href="/blogs/{{.Title}}">{{.Title}}</a></h2>
+        <div class="blog-meta">
+            Release Time: <span class="releaseTime">{{formatTimestamp .CreatedAt}}</span> | Reviews: <span>{{.TotalReviews}}</span>
+            | Author: <span>{{ if .IsAnonymous }} Anonymous {{else}} <a methods="get" href="/blogs?authorName={{getUserNameById $.userIdUserNameMap .UserId}}">{{getUserNameById $.userIdUserNameMap .UserId}}</a> {{ end }}</span>
+        </div>
+    </li>
+    {{end}}
+</ul>
+
+<div class="pagination">
+    {{.paginationHTML}}
+</div>
+
+{{ template "footer" . }}

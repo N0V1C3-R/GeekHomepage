@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="templates/lib/codemirror/codemirror.css">
+<link rel="stylesheet" href="templates/lib/codemirror/darcula.css">
+<link rel="stylesheet" href="templates/css/codedev.css">
+<script src="templates/lib/codemirror/codemirror.js"></script>
+{{ template "header" . }}
+
+{{ template "middle" . }}
+
+<div id="header">
+  <select id="language" onchange="loadScript()">
+    <option value="1001">C (Clang 10.0.1)</option>
+    <option value="50">C (GCC 9.2.0)</option>
+    <option value="1022">C# (Mono 6.10.0.104)</option>
+    <option value="1021">C# (.NET Core SDK 3.1.302)</option>
+    <option value="1023">C# Test (.Net Core SDK 3.1.302, NUnit 3.12.0)</option>
+    <option value="1002">C++ (Clang 10.0.1)</option>
+    <option value="54">C++ (GCC 9.2.0)</option>
+    <option value="1015">C++ Test (Clang 10.0.1, Google Test 1.8.1)</option>
+    <option value="1012">C++ Test (GCC 8.4.0, Google Test1.8.1)</option>
+    <option value="60" selected>Go(1.13.5)</option>
+    <option value="1004">Java (OpenJDK 14.0.1)</option>
+    <option value="63">JavaScript (Node.js 12.14.0)</option>
+    <option value="79">Objective-C (Clang 7.0.1)</option>
+    <option value="68">PHP (7.4.1)</option>
+    <option value="70">Python (2.7.17)</option>
+    <option value="71">Python (3.8.1)</option>
+    <option value="80">R (4.0.0)</option>
+    <option value="72">Ruby (2.7.0)</option>
+    <option value="73">Rust (1.40.0)</option>
+    <option value="83">Swift (5.2.3)</option>
+    <option value="74">TypeScript (3.7.4)</option>
+  </select>
+  <select id="indentType" onchange="loadScript()">
+    <option value="tab">Tab</option>
+    <option value="space" selected>Space</option>
+  </select>
+  <select id="indentUnit" onchange="loadScript()">
+    <option value=2 selected>2</option>
+    <option value=4>4</option>
+  </select>
+</div>
+<div id="content">
+  <textarea id="code"></textarea>
+  <button id="run-btn" onclick="postCodeMsg()">Run</button>
+  <pre id="output"></pre>
+</div>
+
+<script src="templates/js/code_dev.js"></script>
+
+{{ template "footer" . }}
